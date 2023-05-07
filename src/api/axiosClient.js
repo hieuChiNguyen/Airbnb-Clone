@@ -1,5 +1,4 @@
 import axios from "axios";
-import {useSelector} from "react-redux";
 
 
 const axiosClient = axios.create({
@@ -10,7 +9,6 @@ const axiosClient = axios.create({
 });
 
 axiosClient.interceptors.request.use((config)=>{
-
     const token = sessionStorage.getItem("token");
     if(token){
         config.headers.Authorization = `Bearer ${token}`;
