@@ -1,36 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import {Link } from "react-router-dom";
-import authApi from "../api/authApi";
-import { useSelector,useDispatch } from "react-redux";
-import {login, logout} from "../app/reducers/authSlice";
+import {Box, Button, TextField} from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage(){
-    const username = useSelector((state) => state.auth.username);
-    const loggedIn = useSelector((state) => state.auth.loggedIn);
-    const dispatch = useDispatch();
-    const user = {
-        id:3,
-        username: 'hiehtran1803',
-        password: 'tran',
-    };
-    const handleLogin = async () => {
-        const res = await authApi.login(user);
-        if(res.token != null){
-            sessionStorage.setItem("token",res.token);
-            dispatch(login(user));
-        }else {
-            console.log("login failed");
+    const navigate = useNavigate();
+    const [input, setInput] = useState({
+        username: "",
+        password: "",
+    })
+
+    const handleInput = (e) => {
+        setInput({
+            ...input,
+            [e.target.name]: e.target.value, 
+        })
+    }
+
+    const handleLogin = (e) => {
+        const logged = JSON.parse(sessionStorage.getItem('user'));
+        if(input.username === logged.username && input.password === logged.password) {
+            sessionStorage.setItem('loggedIn', true);
+            navigate('/');
+        } else {
+            alert('Something wrong!');
         }
-    };
+
+        e.preventDefault();
+    }
+
     return(
         <div>
-            Login Page
-            <p>username: {username}</p>
-            <p>{loggedIn ? "true":"false"}</p>
-            <button
-                onClick={handleLogin}
-            >Đăng nhập</button>
-            <Link to={'/signup'}>Đăng ký?</Link>
+            <form onSubmit={handleLogin}>
+                <Box display='flex' flexDirection='column' margin='50px auto' boxShadow='5px 5px 10px #ccc' padding='30px'
+                    width='500px' border='1px solid #ccc' borderRadius='20px' justifyContent='center' alignItems='center'
+                    sx={{':hover': {boxShadow: '10px 10px 20px #ccc'}, 'width': {sm: 300, md: 400, lg: 500}}}>
+                    <div>
+                        <img src='airbnb.png' alt='LogoAirbnb' width='75px' height='75px' sx={{'maxWidth': '100%', 'maxHeight': '100%'}} />
+                    </div>
+
+                    <TextField margin='normal' type='text' variant='outlined' label='Username' sx={{width: {sm: 300, md: 400}}}
+                    name='username' value={input.username} onChange={handleInput} />
+                    <TextField margin='normal' type='password' variant='outlined' label='Password' sx={{width: {sm: 300, md: 400}}}
+                    name='password' value={input.password} onChange={handleInput} />
+                    
+                    <Button type='submit' sx={{margin:3, borderRadius:2, width: {xs: 200, sm: 300, lg: 150} }} variant='contained' color='info'>Đăng nhập</Button>
+                    <Link to={'/signup'}>Đăng ký?</Link>
+                </Box>
+            </form>            
         </div>
+        
     );
 }
