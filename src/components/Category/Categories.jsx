@@ -1,3 +1,4 @@
+import React from "react";
 import { TbBeach, TbMountain, TbPool } from "react-icons/tb";
 import { GiBarn, GiBoatFishing, GiCactus, GiCastle, GiCaveEntrance, GiForestCamp, GiIsland, GiWindmill } from "react-icons/gi";
 import { MdOutlineVilla } from "react-icons/md";
@@ -87,13 +88,18 @@ export const categories = [
 export default function Categories() {
 
     return (
-        <div 
-            style={{display:'flex', flexDirection:'row', alignItems:'center', 
-            justifyContent:'space-between', overflowX:'auto', paddingTop:'100px'}}    
-        >
-            {categories.map((item) => (
-                <CategoryBox key={item.label} label={item.label} icon={item.icon} />
-            ))}
-        </div>
+        <>
+            <div 
+                style={{
+                    display:'flex', flexDirection:'row', alignItems:'center', 
+                    justifyContent:'space-between', overflowX:'auto', paddingTop:'10px'
+                }}    
+            >
+                {categories.map((item) => (
+                    <CategoryBox key={item.label} label={item.label} icon={item.icon} />
+                ))}
+            </div>
+            <hr />
+        </>
     )
 }

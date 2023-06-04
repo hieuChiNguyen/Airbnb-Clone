@@ -28,7 +28,7 @@ export default function LoginPage(){
 
         e.preventDefault();
     }
-
+    
     return(
         <div>
             <form onSubmit={handleLogin}>
