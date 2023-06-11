@@ -19,6 +19,11 @@ export default function HotelUpload() {
         spacing: 4,
     });
 
+    const defaultProps = {
+        options: categories,
+        getOptionLabel: (option) => option.label,
+    };
+
     const handleChange = (e) => {
         const value = e.target.value;
         setRoom({
@@ -50,8 +55,8 @@ export default function HotelUpload() {
     return (
         <div 
             style={{
-                position:'relative', float:'right', right:20, width:'40%', 
-                boxShadow:'5px 5px 5px 5px #ccc', margin:'120px auto'
+                position:'relative', float:'right', right:40, width:'40%', 
+                boxShadow:'5px 5px 5px 5px #ccc', margin:'160px auto', padding:'20px'
             }}
         >
             <Paper sx={{margin: theme.spacing(2), padding: theme.spacing(3)}} >
@@ -63,51 +68,56 @@ export default function HotelUpload() {
                 <form onSubmit={handleUpload} autoComplete='off'>
                 <TextField
                     label="Hotel Name"
-                    id="margin-normal"
+                    id="standard-basic"
+                    variant="standard"
                     name="title"
                     defaultValue={room.title}
-                    sx={{margin: theme.spacing(2), width: 400}}
+                    sx={{margin: theme.spacing(2), width: 500}}
                     autoComplete='off'
                     helperText="Enter your home name"
                     onChange={handleChange}
                 />
                 <TextField
                     label="Image"
-                    id="margin-normal"
+                    id="standard-basic"
+                    variant="standard"
                     name="image"
                     defaultValue={room.image}
-                    sx={{margin: theme.spacing(2), width: 400}}
+                    sx={{margin: theme.spacing(2), width: 500}}
                     autoComplete='off'
                     helperText="Enter your home's image address"
                     onChange={handleChange}
                 />
                 <TextField
                     label="Place"
-                    id="margin-normal"
+                    id="standard-basic"
+                    variant="standard"
                     name="place"
                     defaultValue={room.place}
-                    sx={{margin: theme.spacing(2), width: 400}}
+                    sx={{margin: theme.spacing(2), width: 500}}
                     autoComplete='off'
                     helperText="Enter your country"
                     onChange={handleChange}
                 />
                 <TextField
                     label="Price"
-                    id="margin-normal"
+                    id="standard-basic"
+                    variant="standard"
                     name="price"
                     defaultValue={room.price}
-                    sx={{margin: theme.spacing(2), width: 400}}
+                    sx={{margin: theme.spacing(2), width: 500}}
                     autoComplete='off'
                     helperText="Enter your home's price"
                     onChange={handleChange}
                 />
                 <Autocomplete
+                    {...defaultProps}
+                    id="disable-portal"
                     disablePortal
-                    id="combo-box-demo"
-                    options={categories}
-                    sx={{margin: theme.spacing(2), width: 400}}
-                    helperText="Enter your home's price"
-                    renderInput={(params) => <TextField {...params} label="Category" />}
+                    sx={{margin: theme.spacing(2), width: 500}}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Category" variant="standard" />
+                    )}
                 />
                 <Button
                     type="submit"

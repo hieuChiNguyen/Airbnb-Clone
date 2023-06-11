@@ -106,5 +106,40 @@
       "price": "500$",
       "category": "Pools"
     }
+  ],
+  "bookedRooms": [
+    {
+      "id": 1,
+      "roomId": 13,
+      "bookingDate": "2023-06-11",
+      "fromDate": "2023-06-15",
+      "toDate": "2023-06-19",
+      "title": "Hotel 13",
+      "image": "https://a0.muscache.com/im/pictures/42a35068-5ad4-4c2f-bc87-9943040f0b8a.jpg?im_w=720",
+      "place": "ThaiLand",
+      "price": "600$"
+    },
+    {
+      "id": 2,
+      "roomId": 14,
+      "bookingDate": "2023-06-12",
+      "fromDate": "2023-06-14",
+      "toDate": "2023-06-16",
+      "title": "Hotel 14",
+      "image": "https://a0.muscache.com/im/pictures/b92d546e-d530-4cce-9986-459f5aa73dc4.jpg?im_w=720",
+      "place": "Vietnam",
+      "price": "500$"
+    },
+    {
+      "id": 3,
+      "roomId": 1,
+      "bookingDate": "2023-06-20",
+      "fromDate": "2023-06-26",
+      "toDate": "2023-07-01",
+      "title": "Hotel 1",
+      "image": "https://a0.muscache.com/im/pictures/6dc4f6cb-5eb3-4c26-8dbc-17d738c093c8.jpg?im_w=720",
+      "place": "VietNam",
+      "price": "500$"
+    }
   ]
 }

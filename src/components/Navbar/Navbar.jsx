@@ -9,8 +9,8 @@ import "./Navbar.css"
 export default function Navbar() {
     const navigate = useNavigate();
 
-    const handleClick = () => {
-        navigate('/');
+    const handleClick = (path) => {
+        navigate(path);
     }
 
     return (
@@ -27,7 +27,7 @@ export default function Navbar() {
                     <img 
                         src={logo} alt="logo" height='40px' width='150px' 
                         style={{cursor:'pointer'}}
-                        onClick={handleClick}
+                        onClick={() => handleClick('/')}
                     />
                 </div>
 
@@ -40,7 +40,8 @@ export default function Navbar() {
                 >            
                     <div 
                         className="airbnb_home"
-                        style={{fontSize:'1rem', cursor:'pointer', padding: '10px'}}
+                        style={{fontSize:'1rem', cursor:'pointer', padding: '10px'}}c
+                        onClick={() => handleClick('/hosts')}
                     >
                         Airbnb your home
                     </div>
