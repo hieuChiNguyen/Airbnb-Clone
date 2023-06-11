@@ -27,6 +27,9 @@ export default function UserMenu() {
     if(options[selectedIndex] === 'Sign up') {
         path = '/signup';
     }
+    if(options[selectedIndex] === 'Airbnb your home') {
+        path = '/hosts'
+    }
     if(options[selectedIndex] === 'Log out') {
         sessionStorage.removeItem('loggedIn');
         path = '/';
@@ -85,6 +88,7 @@ export default function UserMenu() {
             role={undefined}
             transition
             disablePortal
+            sx={{".MuiPaper-root":{borderRadius: '1rem', marginTop: '1rem'}}}
         >
             {({ TransitionProps, placement }) => (
                 <Grow
@@ -103,6 +107,7 @@ export default function UserMenu() {
                                         disabled={sessionStorage['loggedIn'] ? index >= 4 : index >= 2}
                                         selected={index === selectedIndex}
                                         onClick={(event) => handleMenuItemClick(event, index)}
+                                        sx={{fontSize: '0.9rem', position:'relative', zIndex:2}}
                                     >
                                         {option}
                                     </MenuItem>

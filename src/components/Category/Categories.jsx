@@ -86,20 +86,23 @@ export const categories = [
 ]
 
 export default function Categories() {
-
     return (
         <>
             <div 
                 style={{
-                    display:'flex', flexDirection:'row', alignItems:'center', 
-                    justifyContent:'space-between', overflowX:'auto', paddingTop:'10px'
-                }}    
+                    display:'flex', flexDirection:'row', alignItems:'center', width:'100%',
+                    justifyContent:'space-between', overflowX:'auto', padding:'5px',
+                    position:'fixed', top:'80px', background: '#fff', zIndex:1,
+                    borderTop:'1px solid #ccc', borderBottom:'1px solid #ccc'
+                }} 
+                
             >
                 {categories.map((item) => (
-                    <CategoryBox key={item.label} label={item.label} icon={item.icon} />
+                    <CategoryBox 
+                        key={item.label} label={item.label} icon={item.icon}
+                    />
                 ))}
-            </div>
-            <hr />
+            </div>  
         </>
     )
 }

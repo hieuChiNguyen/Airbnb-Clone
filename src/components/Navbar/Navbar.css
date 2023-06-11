@@ -1,0 +1,9 @@
+.airbnb_home:hover {
+    color: #ef405f;
+    background-color: #ccc;
+    border-radius: 20px;  
+}
+
+.language:hover {
+    color: #ef405f;
+}

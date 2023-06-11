@@ -1,8 +1,9 @@
+import React from "react";
 import { createBrowserRouter, RouterProvider, } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
-import React from "react";
+import HostPage from "./pages/HostPage";
 
 function App() {
     const router = createBrowserRouter([
@@ -17,6 +18,10 @@ function App() {
         {
             path: "/signup",
             element: <SignUpPage />,
+        },
+        {
+            path: "/hosts",
+            element: <HostPage />,
         },
         {
           path: "/*",
