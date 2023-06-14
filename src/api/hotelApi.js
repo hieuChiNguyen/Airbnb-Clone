@@ -5,7 +5,7 @@ const hotelApi = {
         const response = await axiosClient.get('/');
         return response.data;
     },
-    getDetailHotal: async (id) => {
+    getDetailHotel: async (id) => {
         const response = await axiosClient.get('/room/'+id);
         return response.data;
     }

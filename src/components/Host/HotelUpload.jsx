@@ -3,8 +3,8 @@ import axios from "axios";
 import { Button, TextField, Paper, Typography, Autocomplete } from "@mui/material";
 import { createTheme } from '@mui/material/styles';
 import SendIcon from '@mui/icons-material/Send';
-import { categories } from "../Category/Categories";
-
+import ImageUploading from "react-images-uploading";
+import { categories } from "../Category/Categories"
 export default function HotelUpload() {
     const [room, setRoom] = useState({
         id: "",
@@ -13,8 +13,10 @@ export default function HotelUpload() {
         place: "",
         price: "",
         category: "",
+        description: ""
     });
-    
+
+    const [images, setImages] = useState([]);
     const theme = createTheme({
         spacing: 4,
     });
@@ -22,6 +24,13 @@ export default function HotelUpload() {
     const defaultProps = {
         options: categories,
         getOptionLabel: (option) => option.label,
+    };
+
+    const maxNumber = 10;
+    const onChange = (imageList, addUpdateIndex) => {
+        // submit data
+        console.log(imageList, addUpdateIndex);
+        setImages(imageList);
     };
 
     const handleChange = (e) => {
@@ -40,7 +49,8 @@ export default function HotelUpload() {
             image: room.image,
             place: room.place,
             price: room.price,
-            category: room.category
+            category: room.category,
+            description: room.description
         };
 
         axios.post("http://localhost:3001/rooms", roomData)
@@ -77,17 +87,45 @@ export default function HotelUpload() {
                     helperText="Enter your home name"
                     onChange={handleChange}
                 />
-                <TextField
-                    label="Image"
-                    id="standard-basic"
-                    variant="standard"
-                    name="image"
-                    defaultValue={room.image}
-                    sx={{margin: theme.spacing(2), width: 500}}
-                    autoComplete='off'
-                    helperText="Enter your home's image address"
-                    onChange={handleChange}
-                />
+                <Typography sx={{margin: theme.spacing(2)}}>
+                    Maximum upload 10 photos
+                </Typography>
+                <ImageUploading
+                    multiple
+                    value={images}
+                    onChange={onChange}
+                    maxNumber={maxNumber}
+                    dataURLKey="data_url"
+                    acceptType={["jpg", "png"]}
+                >
+                    {({
+                    imageList,
+                    onImageUpload,
+                    onImageUpdate,
+                    onImageRemove,
+                    dragProps
+                    }) => (
+                    // write your building UI
+                    <div>
+                        <Button 
+                            type="file"
+                            variant="contained"
+                            sx={{
+                                margin: theme.spacing(1,2), backgroundColor: '#ef405f', display:'flex'
+                            }}
+                            onClick={onImageUpload}
+                            {...dragProps}
+                        >
+                            Choose File
+                        </Button>
+                        {imageList.map((image, index) => (
+                        <div key={index} style={{display:'flex', flexDirection:'row', margin:'10px', float:'left', left:0}}>
+                            <img src={image.data_url} alt="" width="100" height="100"/>
+                        </div>
+                        ))}
+                    </div>
+                    )}
+                </ImageUploading>
                 <TextField
                     label="Place"
                     id="standard-basic"
@@ -118,6 +156,17 @@ export default function HotelUpload() {
                     renderInput={(params) => (
                       <TextField {...params} label="Category" variant="standard" />
                     )}
+                />
+                <TextField
+                    label="Description"
+                    id="standard-basic"
+                    variant="standard"
+                    name="description"
+                    defaultValue={room.description}
+                    sx={{margin: theme.spacing(2), width: 500}}
+                    autoComplete='off'
+                    helperText="Enter your home's description"
+                    onChange={handleChange}
                 />
                 <Button
                     type="submit"

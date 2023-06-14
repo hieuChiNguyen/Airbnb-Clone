@@ -1,19 +1,18 @@
 import React from "react";
-import Search from './Search';
-import UserMenu from "./UserMenu";
+import SearchDetail from "./SearchDetail"
+import UserMenu from "../../Navbar/UserMenu";
+import logo from "../../../assets/images/logo.png";
+import { MdLanguage } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/images/logo.png";
-import { MdLanguage } from "react-icons/md"
-import "./Navbar.css"
 
-export default function Navbar() {
+export default function NavbarDetail() {
     const navigate = useNavigate();
 
     const handleClick = (path) => {
         navigate(path);
     }
 
-    return (
+    return(
         <div 
             style={{
                 height:'80px', width:'100%', display:'flex',top: '0px', 
@@ -30,7 +29,7 @@ export default function Navbar() {
                 />
             </div>
 
-            <Search />
+            <SearchDetail />
 
             <div style={{
                     alignItems:'center', justifyContent:'center', margin:'auto', 
@@ -54,7 +53,7 @@ export default function Navbar() {
                     <UserMenu />
                 </div>
             </div>    
-        </div>     
+        </div>  
     )
 }
 

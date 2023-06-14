@@ -1,4 +1,4 @@
-.categories:hover, .selected-box {
+.categories:hover, .selected {
     border-bottom: 2px solid black;
     transition: all 0.2s;
 }

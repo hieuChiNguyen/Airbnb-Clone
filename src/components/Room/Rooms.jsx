@@ -9,7 +9,7 @@ export default function Rooms() {
     let navigate = useNavigate(); 
 
     const handleClick = (id) => { 
-        let path = `/id=${id}`;
+        let path = `/details/id=${id}`;
         navigate(path);
     }
 
@@ -21,7 +21,7 @@ export default function Rooms() {
     
     return (
         <div style={{
-                margin: '200px 50px 50px', 
+                margin: '232px 50px 80px', 
             }} 
         >
             <div style={{

@@ -11,7 +11,7 @@ import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
 import { useNavigate } from "react-router-dom";
 
-const options = ["Log in", "Sign up", "Airbnb your home", "Log out"];
+const options = ["Log in", "Sign up", "Airbnb your home", "Rented rooms", "Log out"];
 
 export default function UserMenu() {
   const [open, setOpen] = useState(false);
@@ -29,6 +29,9 @@ export default function UserMenu() {
     }
     if(options[selectedIndex] === 'Airbnb your home') {
         path = '/hosts'
+    }
+    if(options[selectedIndex] === 'Rented rooms') {
+        path = '/rented'
     }
     if(options[selectedIndex] === 'Log out') {
         sessionStorage.removeItem('loggedIn');
@@ -104,7 +107,7 @@ export default function UserMenu() {
                                 {options.map((option, index) => (
                                     <MenuItem
                                         key={option}
-                                        disabled={sessionStorage['loggedIn'] ? index >= 4 : index >= 2}
+                                        disabled={sessionStorage['loggedIn'] ? index >= options.length : index >= 2}
                                         selected={index === selectedIndex}
                                         onClick={(event) => handleMenuItemClick(event, index)}
                                         sx={{fontSize: '0.9rem', position:'relative', zIndex:2}}
