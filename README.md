@@ -4,3 +4,6 @@
 
 ## Upload Page
 ![image](https://github.com/hieuChiNguyen/Airbnb-Clone/assets/105554125/02c3825f-2f01-4cc0-950f-85d5868a778f)
+## Run
+### npm start
+### npx json-server --watch db.json --port 3001 
